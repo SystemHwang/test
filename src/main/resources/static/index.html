@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+    <script type="text/javascript">
+        var ws;
+        function connect() {
+            ws = new WebSocket('ws://localhost:8080/chat');
+            ws.onmessage = function(event) {
+                var log = document.getElementById('log');
+                log.innerHTML += event.data + '<br>';
+            };
+        }
+        function sendMessage() {
+            var content = document.getElementById('msg').value;
+            if (content.trim() !== '') {
+                ws.send(content);
+                document.getElementById('msg').value = '';
+            }
+        }
+        function handleKeyPress(event) {
+            var keycode = event.keyCode || event.which;
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+        window.onload = function() {
+            connect();
+            document.getElementById('msg').addEventListener('keypress', handleKeyPress); // Added event listener for keypress
+        };
+    </script>
+</head>
+<body onload="connect()">
+<h2>Chat</h2>
+<div id="log"></div>
+<input type="text" id="msg">
+<button onclick="sendMessage()">Send</button>
+</body>
+</html>
