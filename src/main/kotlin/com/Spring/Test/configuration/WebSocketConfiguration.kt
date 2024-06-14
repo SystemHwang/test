@@ -14,3 +14,5 @@ class WebSocketConfig(private val chatHandler: ChatHandler) : WebSocketConfigure
         registry.addHandler(chatHandler, "/chat").setAllowedOrigins("*")
     }
 }
+
+//helo?
