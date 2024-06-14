@@ -27,3 +27,6 @@ class ChatHandler : TextWebSocketHandler() {
 }
 
 //EDGFSDF
+
+//ㅋㅋ배고프노
+//ㅋㅋ존나배고프노
